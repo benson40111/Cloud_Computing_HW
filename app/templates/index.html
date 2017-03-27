@@ -1,0 +1,100 @@
+<html>
+	<head>
+		<title>Cloud_Computing HW1</title>
+	</head>
+	<style>
+table {
+	font-family: arial, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+		td, th {
+			border: 1px solid #dddddd;
+			padding: 8px;
+			width: 25%;
+		}
+
+	</style>
+	<body>
+		<table>
+			<tr>
+				<th></th>
+				<th>Table</th>
+				<th>Record</th>
+				<th>F</th>
+			</tr>
+			<tr>
+				<td>New</td>
+				<td>
+					<form method="POST" action="/create_table">
+						<input type="text" name="create_collection" placeholder="Enter">
+						</input>
+						<input type="submit" name="send_create_collection">
+						</input>
+					</form>
+				</td>
+				<td>	
+					<form method="POST" action="/create_record">
+						<input type="text" name="create_document_collection" placeholder="Choose Collection">
+						<input type="text" name="create_document_name" placeholder="姓名：">
+						<input type="text" name="create_document_class" placeholder="學號：">
+						<input type="submit" name="send_create_document">
+					</form>
+				</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Delete</td>
+				<td>
+					<form method="POST" action="/delete_table">
+						<input type="text" name="delete_collection" placeholder="Enter">
+						<input type="submit" name="send_delete_collection">
+					</form>
+				</td>
+				<td>
+					<form method="POST" action="/delete_record">
+						<input type="text" name="delete_collection_name" placeholder="Choose Collection">
+						<input type="text" name="delete_document_name" placeholder="姓名：">
+						<input type="text" name="delete_document_class" placeholder="學號：">
+						<input type="submit" name="send_delete_document">
+					</form>
+				</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Read</td>
+				<td>
+					<form method="POST" action="/read_table">
+						<input type="text" name="read_collection">
+						<input type="submit" name="send_read_collection">
+						<p>{{read_collection}}</p>
+					</form>
+				</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Write</td>
+				<td>
+					<form method="POST" action="/write_table">
+						<input type="text" name="write_oringal_collection" placeholder="oringal name:">
+						<input type="text" name="write_new_collection" placeholder="new name:">
+						<input type="submit" name="send_write_collection">
+						<p>{{write_new_collection}}</p>
+					</form>
+				</td>
+				<td>	
+					<form method="POST" action="/write_record">
+						<input type="text" name="write_collection_name" placeholder="Choose Table:">
+						<input type="text" name="write_oringal_document_name" placeholder="oringal name:">
+						<input type="text" name="write_new_document_name" placeholder="new name:">
+						<input type="submit" name="send_write_document">
+					</form>
+				</td>
+				<td></td>
+			</tr>
+		</table>
+	</body>
+</html>
+
