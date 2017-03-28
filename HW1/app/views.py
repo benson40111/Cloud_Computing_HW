@@ -33,10 +33,12 @@ def delete_table():
 @app.route('/read_table', methods=['POST'])
 def read_table():
     if request.method == 'POST':
-        if request.form['send_read_collection']:
-            read_collection = str(request.form['read_collection'])
+        read_collection = request.form['read_collection']
+        if request.form['send_read_collection'] and read_collection != '':
             read_collection = db.get_collection(read_collection).name
-    return render_template("index.html", read_collection = read_collection)
+            return render_template('index.html', read_collection = read_collection)
+        else:
+            return "Not Found"
 
 @app.route('/write_table', methods=['POST'])
 def write_table():
@@ -55,7 +57,7 @@ def create_record():
             create_document_collection = request.form['create_document_collection']
             create_document_name = request.form['create_document_name']
             create_document_class = request.form['create_document_class']
-            add = {create_document_name : create_document_class}
+            add = {'name':create_document_name, 'class': create_document_class}
             db.get_collection(create_document_collection).insert_one(add)
         return render_template("index.html")
 
@@ -66,7 +68,7 @@ def delete_record():
             delete_collection_name = request.form['delete_collection_name']
             delete_document_name = request.form['delete_document_name']
             delete_document_class = request.form['delete_document_class']
-            delete = {delete_document_name : delete_document_class}
+            delete = {'name':delete_document_name, 'class':delete_document_class}
             db.get_collection(delete_collection_name).delete_one(delete)
         return render_template("index.html")
 
@@ -78,7 +80,8 @@ def write_record():
             write_oringal_document_name = request.form['write_oringal_document_name']
             write_new_document_name = request.form['write_new_document_name']
             oringal_document = {write_oringal_document_name : write_oringal_document_name}
-            db.get_collection(write_collection_name).update(oringal_document, {$set:{write_oringal_collection : write_new_document_name}},{upsert = True})
+            db.get_collection(write_collection_name).update({'name':write_oringal_document_name}, {'name':write_new_document_name})
+        return render_template('index.html')
 
 
 
