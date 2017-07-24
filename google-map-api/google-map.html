@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<style type="text/css">
+			html, body{ height: 100%; margin: 0; padding: 0;}
+			#map-canvas{ height: 500px; width: 50%; float: left;}
+			.control_panel{ width:100%; }
+		</style>
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-npf8lxxRC7voRGShKY6Pwm0t2oJkeEE&libraries=places"></script>
+		<script type="text/javascript" src="main.js"></script>
+	</head>
+
+	<body>
+		<div id="map-canvas"></div>
+		<div style="width:50%;float:right;height:500px">
+			<div id="direction_panel"></div>
+		</div>
+		<div class="control_panel">
+			<h2>路線規劃</h2>
+			<input id="destination" type="text" size="30" value="雲林科技大學" placeholder="Enter destination:">
+			<input id="address" type="text" size="30" value="雲林科技大學" placeholder="Enter start:">   
+			<button id="submit" onclick="route(address.value, destination.value)">送出</button>
+		</div>
+		<button id="getcurrent" onclick="get_current()">取得當前位置</button>
+		<button onclick="normal_mod()">一般模式</button>
+		<button onclick="traffic_layer()">路況展示</button>
+		<button onclick="transit_layer()">大眾運輸</button>
+	</body>
+</html>

@@ -13,8 +13,9 @@ def index():
 @app.route('/create_table', methods=['POST'])
 def create_table():
     if request.method == 'POST':
-        if request.form['send_create_collection']:
-            create_collection = str(request.form['create_collection'])
+        create_collection = request.form['create_collection']
+        if (request.form['send_create_collection'] and create_collection != ""):
+            create_collection = str(create_collection)
             db.create_collection(create_collection)
         else:
             return 'Error Input!'
